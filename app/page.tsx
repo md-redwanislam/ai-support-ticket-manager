@@ -1,7 +1,14 @@
 import LoginForm from "@/components/login-form";
+import { getCurrentUser } from "@/lib/getAuthUser";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const user = await getCurrentUser();
+
+  if (user) {
+    redirect("/tickets");
+  }
   return (
     <main className="flex min-h-screen items-center justify-center bg-gray-100 p-4">
       <div className="w-full max-w-md rounded-xl bg-white p-8 shadow">
