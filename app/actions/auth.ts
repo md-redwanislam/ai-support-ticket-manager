@@ -108,3 +108,11 @@ export async function loginUser(
 
   redirect("/tickets");
 }
+
+export async function logoutUser() {
+  const cookieStore = await cookies();
+
+  cookieStore.delete("blog_token");
+
+  redirect("/");
+}
