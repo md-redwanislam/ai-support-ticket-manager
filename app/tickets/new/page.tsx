@@ -12,21 +12,24 @@ export default async function NewTicketPage() {
   }
 
   return (
-    <main className="mx-auto min-h-screen max-w-3xl p-6">
+    <main className="mx-auto min-h-screen max-w-3xl bg-[#24232d] px-4 py-6 text-white sm:px-6 sm:py-8">
       <div className="mb-6">
-        <Link href="/tickets" className="text-indigo-600 hover:underline">
+        <Link
+          href="/tickets"
+          className="text-sm font-medium text-[#aa9de1] transition-colors duration-200 hover:text-[#8b5cf6] hover:underline"
+        >
           ← Back to tickets
         </Link>
 
-        <h1 className="mt-4 text-3xl font-bold">Create a ticket</h1>
+        <h1 className="mt-4 text-2xl font-bold sm:text-3xl">Create a ticket</h1>
 
-        <p className="mt-2 text-gray-600">
-          Describe your problem, {user.name}. AI can suggest the details, and
-          you can edit them before submitting.
+        <p className="mt-2 text-sm leading-6 text-[#ebeaef] sm:text-base">
+          Describe your problem, {user.name}. AI can suggest the details and you
+          can edit them before submitting.
         </p>
       </div>
 
-      <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+      <div className="rounded-2xl border border-[#484454] bg-[#302e3b] p-4 shadow-xl shadow-black/10 sm:p-6">
         <CreateTicketForm />
       </div>
     </main>

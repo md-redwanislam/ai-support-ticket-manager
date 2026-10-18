@@ -20,23 +20,38 @@ export default async function RegisterPage({
         : null;
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-gray-100 p-4">
-      <div className="w-full max-w-md rounded-xl bg-white p-8 shadow">
-        <h1 className="mb-2 text-3xl font-bold">Create an account</h1>
+    <main className="flex min-h-screen items-center justify-center bg-[#24232d] p-4 text-white">
+      <div className="w-full max-w-md rounded-2xl border border-[#484454] bg-[#302e3b] p-6 shadow-2xl shadow-black/20 sm:p-8">
+        <h1 className="mb-5 text-center text-3xl font-extrabold tracking-tight">
+          <span className="text-[#c4b5fd] transition-colors duration-200 hover:text-[#8b5cf6]">
+            Support
+          </span>
+          <span className="text-[#f5f3ff]">Desk</span>
+        </h1>
 
-        <p className="mb-6 text-gray-600">
-          Register to start publishing blogs.
+        <h2 className="mb-2 text-2xl font-bold sm:text-3xl">
+          Create an account
+        </h2>
+
+        <p className="mb-6 text-sm text-[#c4c1d0] sm:text-base">
+          Register to create tickets.
         </p>
 
         {errorMessage && (
-          <p role="alert" className="mb-4 rounded bg-red-50 p-3 text-red-700">
+          <p
+            role="alert"
+            className="mb-4 rounded-lg border border-red-400/20 bg-red-500/10 p-3 text-sm text-red-300"
+          >
             {errorMessage}
           </p>
         )}
 
-        <form action={registerUser} className="space-y-4">
+        <form action={registerUser} className="space-y-5">
           <div>
-            <label htmlFor="name" className="mb-1 block">
+            <label
+              htmlFor="name"
+              className="mb-2 block text-sm font-medium text-[#f5f3ff]"
+            >
               Name
             </label>
             <input
@@ -47,12 +62,15 @@ export default async function RegisterPage({
               required
               minLength={2}
               maxLength={80}
-              className="w-full rounded border p-3"
+              className="w-full rounded-lg border border-[#484454] bg-[#24232d] p-3 text-white outline-none transition placeholder:text-[#9691a7] focus:border-[#a78bfa] focus:ring-2 focus:ring-[#a78bfa]/20"
             />
           </div>
 
           <div>
-            <label htmlFor="email" className="mb-1 block">
+            <label
+              htmlFor="email"
+              className="mb-2 block text-sm font-medium text-[#f5f3ff]"
+            >
               Email
             </label>
             <input
@@ -62,12 +80,15 @@ export default async function RegisterPage({
               autoComplete="email"
               required
               maxLength={254}
-              className="w-full rounded border p-3"
+              className="w-full rounded-lg border border-[#484454] bg-[#24232d] p-3 text-white outline-none transition placeholder:text-[#9691a7] focus:border-[#a78bfa] focus:ring-2 focus:ring-[#a78bfa]/20"
             />
           </div>
 
           <div>
-            <label htmlFor="password" className="mb-1 block">
+            <label
+              htmlFor="password"
+              className="mb-2 block text-sm font-medium text-[#f5f3ff]"
+            >
               Password
             </label>
             <input
@@ -78,21 +99,24 @@ export default async function RegisterPage({
               required
               minLength={8}
               maxLength={72}
-              className="w-full rounded border p-3"
+              className="w-full rounded-lg border border-[#484454] bg-[#24232d] p-3 text-white outline-none transition placeholder:text-[#9691a7] focus:border-[#a78bfa] focus:ring-2 focus:ring-[#a78bfa]/20"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full rounded bg-indigo-600 p-3 text-white hover:bg-indigo-700"
+            className="w-full rounded-lg bg-[#c4b5fd] p-3 font-semibold text-[#211b35] transition-colors duration-200 hover:bg-[#8b5cf6] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#c4b5fd] focus:ring-offset-2 focus:ring-offset-[#302e3b] active:bg-[#7c3aed]"
           >
             Register
           </button>
         </form>
 
-        <p className="mt-5 text-center text-sm text-gray-600">
+        <p className="mt-6 text-center text-sm text-[#c4c1d0]">
           Already have an account?{" "}
-          <Link href="/" className="text-indigo-600 hover:underline">
+          <Link
+            href="/"
+            className="font-medium text-[#c4b5fd] transition-colors duration-200 hover:text-[#8b5cf6] hover:underline"
+          >
             Sign in
           </Link>
         </p>

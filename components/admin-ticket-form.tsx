@@ -53,7 +53,10 @@ export default function AdminTicketForm(props: AdminTicketFormProps) {
       <input type="hidden" name="ticketId" value={props.ticketId} />
 
       <div>
-        <label htmlFor="title" className="mb-1 block font-medium">
+        <label
+          htmlFor="title"
+          className="mb-2 block text-sm font-medium text-[#f5f3ff]"
+        >
           Title
         </label>
         <input
@@ -64,14 +67,17 @@ export default function AdminTicketForm(props: AdminTicketFormProps) {
           required
           minLength={3}
           maxLength={160}
-          className="w-full rounded-lg border p-3"
+          className="w-full rounded-lg border border-[#484454] bg-[#24232d] px-3 py-3 text-sm text-white outline-none transition placeholder:text-[#a9a5b8] focus:border-[#a78bfa] focus:ring-2 focus:ring-[#a78bfa]/20"
         />
         <FieldErrors errors={state.fieldErrors?.title} />
       </div>
 
       <div>
-        <label htmlFor="summary" className="mb-1 block font-medium">
-          Summary (optional)
+        <label
+          htmlFor="summary"
+          className="mb-2 block text-sm font-medium text-[#f5f3ff]"
+        >
+          Summary <span className="font-normal text-[#a9a5b8]">(optional)</span>
         </label>
         <textarea
           id="summary"
@@ -80,13 +86,16 @@ export default function AdminTicketForm(props: AdminTicketFormProps) {
           onChange={(event) => setSummary(event.target.value)}
           rows={3}
           maxLength={1000}
-          className="w-full rounded-lg border p-3"
+          className="w-full resize-y rounded-lg border border-[#484454] bg-[#24232d] px-3 py-3 text-sm text-white outline-none transition placeholder:text-[#a9a5b8] focus:border-[#a78bfa] focus:ring-2 focus:ring-[#a78bfa]/20"
         />
         <FieldErrors errors={state.fieldErrors?.summary} />
       </div>
 
       <div>
-        <label htmlFor="description" className="mb-1 block font-medium">
+        <label
+          htmlFor="description"
+          className="mb-2 block text-sm font-medium text-[#f5f3ff]"
+        >
           Description
         </label>
         <textarea
@@ -98,14 +107,17 @@ export default function AdminTicketForm(props: AdminTicketFormProps) {
           minLength={10}
           maxLength={5000}
           rows={8}
-          className="w-full rounded-lg border p-3"
+          className="w-full resize-y rounded-lg border border-[#484454] bg-[#24232d] px-3 py-3 text-sm leading-6 text-white outline-none transition placeholder:text-[#a9a5b8] focus:border-[#a78bfa] focus:ring-2 focus:ring-[#a78bfa]/20"
         />
         <FieldErrors errors={state.fieldErrors?.description} />
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-3">
+      <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <label htmlFor="status" className="mb-1 block font-medium">
+          <label
+            htmlFor="status"
+            className="mb-2 block text-sm font-medium text-[#f5f3ff]"
+          >
             Status
           </label>
           <select
@@ -115,10 +127,14 @@ export default function AdminTicketForm(props: AdminTicketFormProps) {
             onChange={(event) =>
               setStatus(event.target.value as TicketStatusValue)
             }
-            className="w-full rounded-lg border bg-white p-3"
+            className="w-full rounded-lg border border-[#484454] bg-[#24232d] px-3 py-3 text-sm text-white outline-none transition focus:border-[#a78bfa] focus:ring-2 focus:ring-[#a78bfa]/20"
           >
             {ticketStatuses.map((value) => (
-              <option key={value} value={value}>
+              <option
+                key={value}
+                value={value}
+                className="bg-[#302e3b] text-white"
+              >
                 {formatLabel(value)}
               </option>
             ))}
@@ -127,7 +143,10 @@ export default function AdminTicketForm(props: AdminTicketFormProps) {
         </div>
 
         <div>
-          <label htmlFor="priority" className="mb-1 block font-medium">
+          <label
+            htmlFor="priority"
+            className="mb-2 block text-sm font-medium text-[#f5f3ff]"
+          >
             Priority
           </label>
           <select
@@ -137,10 +156,14 @@ export default function AdminTicketForm(props: AdminTicketFormProps) {
             onChange={(event) =>
               setPriority(event.target.value as TicketPriorityValue)
             }
-            className="w-full rounded-lg border bg-white p-3"
+            className="w-full rounded-lg border border-[#484454] bg-[#24232d] px-3 py-3 text-sm text-white outline-none transition focus:border-[#a78bfa] focus:ring-2 focus:ring-[#a78bfa]/20"
           >
             {ticketPriorities.map((value) => (
-              <option key={value} value={value}>
+              <option
+                key={value}
+                value={value}
+                className="bg-[#302e3b] text-white"
+              >
                 {formatLabel(value)}
               </option>
             ))}
@@ -148,8 +171,11 @@ export default function AdminTicketForm(props: AdminTicketFormProps) {
           <FieldErrors errors={state.fieldErrors?.priority} />
         </div>
 
-        <div>
-          <label htmlFor="category" className="mb-1 block font-medium">
+        <div className="sm:col-span-2">
+          <label
+            htmlFor="category"
+            className="mb-2 block text-sm font-medium text-[#f5f3ff]"
+          >
             Category
           </label>
           <select
@@ -159,10 +185,14 @@ export default function AdminTicketForm(props: AdminTicketFormProps) {
             onChange={(event) =>
               setCategory(event.target.value as TicketCategoryValue)
             }
-            className="w-full rounded-lg border bg-white p-3"
+            className="w-full rounded-lg border border-[#484454] bg-[#24232d] px-3 py-3 text-sm text-white outline-none transition focus:border-[#a78bfa] focus:ring-2 focus:ring-[#a78bfa]/20"
           >
             {ticketCategories.map((value) => (
-              <option key={value} value={value}>
+              <option
+                key={value}
+                value={value}
+                className="bg-[#302e3b] text-white"
+              >
                 {formatLabel(value)}
               </option>
             ))}
@@ -172,24 +202,32 @@ export default function AdminTicketForm(props: AdminTicketFormProps) {
       </div>
 
       {state.error && (
-        <p role="alert" className="rounded-lg bg-red-50 p-3 text-red-700">
+        <p
+          role="alert"
+          className="rounded-lg border border-red-400/20 bg-red-500/10 p-3 text-sm text-red-300"
+        >
           {state.error}
         </p>
       )}
 
       {state.success && (
-        <p role="status" className="rounded-lg bg-green-50 p-3 text-green-700">
+        <p
+          role="status"
+          className="rounded-lg border border-emerald-400/20 bg-emerald-500/10 p-3 text-sm text-emerald-300"
+        >
           {state.success}
         </p>
       )}
 
-      <button
-        type="submit"
-        disabled={isPending}
-        className="rounded-lg bg-indigo-600 px-5 py-3 text-white disabled:opacity-50"
-      >
-        {isPending ? "Saving..." : "Save changes"}
-      </button>
+      <div className="border-t border-[#484454] pt-5">
+        <button
+          type="submit"
+          disabled={isPending}
+          className="w-full rounded-lg bg-[#c4b5fd] px-5 py-3 text-sm font-semibold text-[#24232d] transition-colors duration-200 hover:bg-[#a78bfa] disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+        >
+          {isPending ? "Saving..." : "Save changes"}
+        </button>
+      </div>
     </form>
   );
 }

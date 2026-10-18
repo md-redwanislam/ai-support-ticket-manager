@@ -5,19 +5,20 @@ import {
 } from "@/lib/ticket-constants";
 
 const statusStyles: Record<TicketStatusValue, string> = {
-  OPEN: "bg-blue-50 text-blue-700",
-  IN_PROGRESS: "bg-amber-50 text-amber-700",
-  RESOLVED: "bg-green-50 text-green-700",
+  OPEN: "border border-sky-400/20 bg-sky-400/10 text-sky-300",
+  IN_PROGRESS: "border border-amber-400/20 bg-amber-400/10 text-amber-300",
+  RESOLVED: "border border-emerald-400/20 bg-emerald-400/10 text-emerald-300",
 };
 
 const priorityStyles: Record<TicketPriorityValue, string> = {
-  LOW: "bg-gray-100 text-gray-700",
-  MEDIUM: "bg-indigo-50 text-indigo-700",
-  HIGH: "bg-orange-50 text-orange-700",
-  URGENT: "bg-red-50 text-red-700",
+  LOW: "border border-slate-400/20 bg-slate-400/10 text-slate-300",
+  MEDIUM: "border border-violet-400/20 bg-violet-400/10 text-violet-300",
+  HIGH: "border border-orange-400/20 bg-orange-400/10 text-orange-300",
+  URGENT: "border border-red-400/20 bg-red-400/10 text-red-300",
 };
 
-const badgeBase = "rounded-full px-2.5 py-0.5 text-xs font-medium";
+const badgeBase =
+  "inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium";
 
 export function StatusBadge({ status }: { status: TicketStatusValue }) {
   return (
@@ -37,7 +38,9 @@ export function PriorityBadge({ priority }: { priority: TicketPriorityValue }) {
 
 export function CategoryBadge({ category }: { category: string }) {
   return (
-    <span className={`${badgeBase} bg-gray-100 text-gray-700`}>
+    <span
+      className={`${badgeBase} border border-[#c4b5fd]/15 bg-[#c4b5fd]/10 text-[#d7ccff]`}
+    >
       {formatLabel(category)}
     </span>
   );

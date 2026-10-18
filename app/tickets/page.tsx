@@ -30,9 +30,8 @@ function parsePage(value: string | string[] | undefined): number {
 export default async function TicketsPage({ searchParams }: TicketsPageProps) {
   const user = await requireUser();
 
-  // Admins use /admin/tickets only.
   if (user.role === "ADMIN") {
-    redirect("/admin/tickets");
+    redirect("/admin");
   }
 
   const page = parsePage((await searchParams).page);
@@ -62,34 +61,47 @@ export default async function TicketsPage({ searchParams }: TicketsPageProps) {
   });
 
   return (
-    <main className="mx-auto min-h-screen max-w-5xl p-6">
-      <header className="mb-8 flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-bold">My Tickets</h1>
-          <p className="mt-2 text-gray-600">
-            Track the support requests you have submitted.
-          </p>
+    <main className="mx-auto min-h-screen max-w-5xl bg-[#24232d] px-4 py-6 text-white sm:px-6">
+      <header className="mb-8">
+        <div className="relative flex min-h-12 items-center justify-between gap-3">
+          <div className="flex-1">
+            <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
+              <span className="text-[#c4b5fd] transition-colors duration-200 hover:text-[#8b5cf6]">
+                Support
+              </span>
+              <span className="text-[#f5f3ff]">Desk</span>
+            </h1>
+          </div>
+
+          <form action={logoutUser} className="shrink-0">
+            <button
+              type="submit"
+              className="rounded-lg border border-red-400/20 bg-red-500/10 px-3 py-2 text-sm font-medium text-red-300 transition-colors duration-200 hover:bg-red-500/20 sm:px-4"
+            >
+              Logout
+            </button>
+          </form>
         </div>
 
-        <Link
-          href="/tickets/new"
-          className="rounded-lg bg-indigo-600 px-4 py-2 text-white"
-        >
-          + Create ticket
-        </Link>
+        <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <h2 className="text-2xl font-bold sm:text-3xl">My Tickets</h2>
+            <p className="mt-2 text-sm text-[#c4c1d0] sm:text-base">
+              Track the support requests you have submitted.
+            </p>
+          </div>
 
-        <form action={logoutUser} className="mt-4">
-          <button
-            type="submit"
-            className="rounded bg-red-600 px-4 py-2 text-white hover:bg-red-700"
+          <Link
+            href="/tickets/new"
+            className="inline-flex items-center justify-center rounded-lg bg-[#c4b5fd] px-4 py-2.5 font-semibold text-[#211b35] transition-colors duration-200 hover:bg-[#8b5cf6] hover:text-white"
           >
-            Logout
-          </button>
-        </form>
+            + Create ticket
+          </Link>
+        </div>
       </header>
 
       {tickets.length === 0 ? (
-        <p className="rounded-lg bg-gray-50 p-6 text-gray-600">
+        <p className="rounded-xl border border-[#484454] bg-[#302e3b] p-6 text-[#c4c1d0]">
           You haven&apos;t created any tickets yet.
         </p>
       ) : (
@@ -97,23 +109,23 @@ export default async function TicketsPage({ searchParams }: TicketsPageProps) {
           {tickets.map((ticket) => (
             <article
               key={ticket.id}
-              className="flex flex-wrap items-center justify-between gap-4 rounded-xl border p-5"
+              className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-[#484454] bg-[#302e3b] p-4 transition-colors duration-200 hover:border-[#71658f] sm:p-5"
             >
-              <div className="min-w-0">
+              <div className="min-w-0 flex-1">
                 <Link
                   href={`/tickets/${ticket.id}`}
-                  className="text-xl font-semibold hover:text-indigo-600"
+                  className="break-words text-lg font-semibold text-[#f5f3ff] transition-colors duration-200 hover:text-[#c4b5fd] sm:text-xl"
                 >
                   {ticket.title}
                 </Link>
 
-                <div className="mt-2 flex flex-wrap items-center gap-2">
+                <div className="mt-3 flex flex-wrap items-center gap-2">
                   <StatusBadge status={ticket.status} />
                   <PriorityBadge priority={ticket.priority} />
                   <CategoryBadge category={ticket.category} />
                 </div>
 
-                <p className="mt-2 text-sm text-gray-500">
+                <p className="mt-3 text-sm text-[#a9a5b8]">
                   Created{" "}
                   {ticket.createdAt.toLocaleDateString("en-GB", {
                     day: "numeric",
@@ -125,7 +137,7 @@ export default async function TicketsPage({ searchParams }: TicketsPageProps) {
 
               <Link
                 href={`/tickets/${ticket.id}`}
-                className="text-indigo-600 hover:underline"
+                className="shrink-0 font-medium text-[#c4b5fd] transition-colors duration-200 hover:text-[#8b5cf6] hover:underline"
               >
                 View
               </Link>
@@ -137,12 +149,12 @@ export default async function TicketsPage({ searchParams }: TicketsPageProps) {
       {totalPages > 1 && (
         <nav
           aria-label="Pagination"
-          className="mt-8 flex items-center justify-between"
+          className="mt-8 flex items-center justify-between gap-3 border-t border-[#484454] pt-5"
         >
           {page > 1 ? (
             <Link
               href={page === 2 ? "/tickets" : `/tickets?page=${page - 1}`}
-              className="text-indigo-600 hover:underline"
+              className="text-sm font-medium text-[#c4b5fd] transition-colors hover:text-[#8b5cf6] hover:underline sm:text-base"
             >
               ← Previous
             </Link>
@@ -150,14 +162,14 @@ export default async function TicketsPage({ searchParams }: TicketsPageProps) {
             <span />
           )}
 
-          <span className="text-sm text-gray-600">
+          <span className="text-sm text-[#c4c1d0]">
             Page {page} of {totalPages}
           </span>
 
           {page < totalPages ? (
             <Link
               href={`/tickets?page=${page + 1}`}
-              className="text-indigo-600 hover:underline"
+              className="text-sm font-medium text-[#c4b5fd] transition-colors hover:text-[#8b5cf6] hover:underline sm:text-base"
             >
               Next →
             </Link>

@@ -52,11 +52,11 @@ export default function CreateTicketForm() {
   }
 
   return (
-    <form action={formAction} className="space-y-5">
+    <form action={formAction} className="space-y-6">
       <div>
         <label
           htmlFor="ticket-description"
-          className="mb-1 block text-sm font-medium text-gray-700"
+          className="mb-2 block text-sm font-medium text-[#f5f3ff]"
         >
           Problem description
         </label>
@@ -69,26 +69,26 @@ export default function CreateTicketForm() {
           rows={7}
           maxLength={5000}
           required
-          className="w-full rounded-lg border border-gray-300 p-3 outline-none focus:border-indigo-500"
+          className="w-full rounded-lg border border-[#484454] bg-[#24232d] p-3 text-white outline-none transition placeholder:text-[#9691a7] focus:border-[#a78bfa] focus:ring-2 focus:ring-[#a78bfa]/20"
           placeholder="Describe what happened and what you expected..."
         />
 
         {state.fieldErrors?.description?.map((error) => (
-          <p key={error} className="mt-1 text-sm text-red-600">
+          <p key={error} className="mt-1 text-sm text-red-300">
             {error}
           </p>
         ))}
       </div>
 
-      <section className="rounded-xl border border-indigo-200 bg-indigo-50/50 p-5">
+      <section className="rounded-xl border border-[#8b5cf6]/30 bg-[#8b5cf6]/[0.08] p-4 sm:p-5">
         <div className="mb-3 flex items-center gap-2">
           <span aria-hidden="true">✨</span>
-          <h2 className="text-lg font-semibold text-gray-900">
+          <h2 className="text-lg font-semibold text-[#f5f3ff]">
             AI ticket assistant
           </h2>
         </div>
 
-        <p className="mb-4 text-sm text-gray-600">
+        <p className="mb-4 text-sm leading-6 text-[#c4c1d0]">
           Suggest a title, summary, category, and priority from your
           description. Review and edit them below before submitting.
         </p>
@@ -97,7 +97,7 @@ export default function CreateTicketForm() {
           type="button"
           onClick={handleSuggest}
           disabled={isSuggesting || description.trim().length < 10}
-          className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
+          className="w-full rounded-lg bg-[#c4b5fd] px-4 py-2.5 text-sm font-semibold text-[#211b35] transition-colors duration-200 hover:bg-[#8b5cf6] hover:text-white disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
         >
           {isSuggesting
             ? "Generating suggestions..."
@@ -107,14 +107,14 @@ export default function CreateTicketForm() {
         </button>
 
         {hasSuggestion && !aiError && (
-          <p role="status" className="mt-3 text-sm text-indigo-800">
+          <p role="status" className="mt-3 text-sm leading-5 text-[#c4b5fd]">
             Suggestions applied below. Regenerating replaces any edits you made
             to them.
           </p>
         )}
 
         {aiError && (
-          <p role="alert" className="mt-3 text-sm text-red-600">
+          <p role="alert" className="mt-3 text-sm text-red-300">
             {aiError}
           </p>
         )}
@@ -123,7 +123,7 @@ export default function CreateTicketForm() {
       <div>
         <label
           htmlFor="ticket-title"
-          className="mb-1 block text-sm font-medium text-gray-700"
+          className="mb-2 block text-sm font-medium text-[#f5f3ff]"
         >
           Title
         </label>
@@ -136,12 +136,12 @@ export default function CreateTicketForm() {
           minLength={3}
           maxLength={160}
           required
-          className="w-full rounded-lg border border-gray-300 p-3 outline-none focus:border-indigo-500"
+          className="w-full rounded-lg border border-[#484454] bg-[#24232d] p-3 text-white outline-none transition placeholder:text-[#9691a7] focus:border-[#a78bfa] focus:ring-2 focus:ring-[#a78bfa]/20"
           placeholder="Short title for your ticket"
         />
 
         {state.fieldErrors?.title?.map((error) => (
-          <p key={error} className="mt-1 text-sm text-red-600">
+          <p key={error} className="mt-1 text-sm text-red-300">
             {error}
           </p>
         ))}
@@ -150,7 +150,7 @@ export default function CreateTicketForm() {
       <div>
         <label
           htmlFor="ticket-summary"
-          className="mb-1 block text-sm font-medium text-gray-700"
+          className="mb-2 block text-sm font-medium text-[#f5f3ff]"
         >
           Summary (optional)
         </label>
@@ -162,22 +162,22 @@ export default function CreateTicketForm() {
           onChange={(event) => setSummary(event.target.value)}
           rows={3}
           maxLength={1000}
-          className="w-full rounded-lg border border-gray-300 p-3 outline-none focus:border-indigo-500"
+          className="w-full rounded-lg border border-[#484454] bg-[#24232d] p-3 text-white outline-none transition placeholder:text-[#9691a7] focus:border-[#a78bfa] focus:ring-2 focus:ring-[#a78bfa]/20"
           placeholder="A brief summary of the problem"
         />
 
         {state.fieldErrors?.summary?.map((error) => (
-          <p key={error} className="mt-1 text-sm text-red-600">
+          <p key={error} className="mt-1 text-sm text-red-300">
             {error}
           </p>
         ))}
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <div>
           <label
             htmlFor="ticket-category"
-            className="mb-1 block text-sm font-medium text-gray-700"
+            className="mb-2 block text-sm font-medium text-[#f5f3ff]"
           >
             Category
           </label>
@@ -189,17 +189,21 @@ export default function CreateTicketForm() {
             onChange={(event) =>
               setCategory(event.target.value as TicketCategoryValue)
             }
-            className="w-full rounded-lg border border-gray-300 bg-white p-3 outline-none focus:border-indigo-500"
+            className="w-full rounded-lg border border-[#484454] bg-[#24232d] p-3 text-white outline-none transition focus:border-[#a78bfa] focus:ring-2 focus:ring-[#a78bfa]/20"
           >
             {ticketCategories.map((value) => (
-              <option key={value} value={value}>
+              <option
+                key={value}
+                value={value}
+                className="bg-[#302e3b] text-white"
+              >
                 {formatLabel(value)}
               </option>
             ))}
           </select>
 
           {state.fieldErrors?.category?.map((error) => (
-            <p key={error} className="mt-1 text-sm text-red-600">
+            <p key={error} className="mt-1 text-sm text-red-300">
               {error}
             </p>
           ))}
@@ -208,7 +212,7 @@ export default function CreateTicketForm() {
         <div>
           <label
             htmlFor="ticket-priority"
-            className="mb-1 block text-sm font-medium text-gray-700"
+            className="mb-2 block text-sm font-medium text-[#f5f3ff]"
           >
             Priority
           </label>
@@ -220,21 +224,25 @@ export default function CreateTicketForm() {
             onChange={(event) =>
               setPriority(event.target.value as TicketPriorityValue)
             }
-            className="w-full rounded-lg border border-gray-300 bg-white p-3 outline-none focus:border-indigo-500"
+            className="w-full rounded-lg border border-[#484454] bg-[#24232d] p-3 text-white outline-none transition focus:border-[#a78bfa] focus:ring-2 focus:ring-[#a78bfa]/20"
           >
             {ticketPriorities.map((value) => (
-              <option key={value} value={value}>
+              <option
+                key={value}
+                value={value}
+                className="bg-[#302e3b] text-white"
+              >
                 {formatLabel(value)}
               </option>
             ))}
           </select>
 
-          <p className="mt-1 text-xs text-gray-500">
+          <p className="mt-2 text-xs leading-5 text-[#a9a5b8]">
             Only admins can change the priority after you submit.
           </p>
 
           {state.fieldErrors?.priority?.map((error) => (
-            <p key={error} className="mt-1 text-sm text-red-600">
+            <p key={error} className="mt-1 text-sm text-red-300">
               {error}
             </p>
           ))}
@@ -242,7 +250,10 @@ export default function CreateTicketForm() {
       </div>
 
       {state.error && (
-        <p role="alert" className="text-sm text-red-600">
+        <p
+          role="alert"
+          className="rounded-lg border border-red-400/20 bg-red-500/10 p-3 text-sm text-red-300"
+        >
           {state.error}
         </p>
       )}
@@ -250,7 +261,7 @@ export default function CreateTicketForm() {
       <button
         type="submit"
         disabled={isPending || isSuggesting}
-        className="rounded-lg bg-indigo-600 px-5 py-3 font-medium text-white hover:bg-indigo-700 disabled:opacity-50"
+        className="w-full rounded-lg bg-[#c4b5fd] px-5 py-3 font-semibold text-[#211b35] transition-colors duration-200 hover:bg-[#8b5cf6] hover:text-white disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
       >
         {isPending ? "Creating ticket..." : "Create ticket"}
       </button>
