@@ -45,17 +45,19 @@ export default async function EditTicketPage({ params }: EditTicketPageProps) {
   }
 
   return (
-    <main className="mx-auto min-h-screen max-w-3xl p-6">
+    <main className="mx-auto min-h-screen max-w-3xl bg-[#24232d] px-4 py-6 text-white sm:px-6 sm:py-8">
       <Link
         href={`/tickets/${ticket.id}`}
-        className="text-indigo-600 hover:underline"
+        className="text-sm font-medium text-[#c4b5fd] transition-colors duration-200 hover:text-[#8b5cf6] hover:underline"
       >
         ← Back to ticket
       </Link>
 
-      <h1 className="my-6 text-3xl font-bold">Edit ticket</h1>
+      <h1 className="my-6 text-2xl font-bold text-[#f5f3ff] sm:text-3xl">
+        Edit ticket
+      </h1>
 
-      <div className="rounded-xl border p-6 shadow-sm">
+      <div className="rounded-2xl border border-[#484454] bg-[#302e3b] p-4 shadow-xl shadow-black/10 sm:p-6">
         <EditTicketForm
           ticketId={ticket.id}
           title={ticket.title}

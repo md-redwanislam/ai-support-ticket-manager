@@ -98,7 +98,7 @@ export async function loginUser(
 
   const cookieStore = await cookies();
 
-  cookieStore.set("blog_token", token, {
+  cookieStore.set("auth_token", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
@@ -112,7 +112,7 @@ export async function loginUser(
 export async function logoutUser() {
   const cookieStore = await cookies();
 
-  cookieStore.delete("blog_token");
+  cookieStore.delete("auth_token");
 
   redirect("/");
 }

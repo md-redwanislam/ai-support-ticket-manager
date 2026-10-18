@@ -29,14 +29,24 @@ export default async function EditUserPage({ params }: EditUserPageProps) {
   }
 
   return (
-    <main className="mx-auto min-h-screen max-w-3xl p-6">
-      <Link href="/admin/users" className="text-indigo-600 hover:underline">
+    <main className="mx-auto min-h-screen max-w-3xl bg-[#24232d] px-4 py-6 text-[#f5f3ff] sm:px-6 sm:py-8">
+      <Link
+        href="/admin/users"
+        className="inline-flex items-center text-sm font-medium text-[#c4b5fd] transition-colors duration-200 hover:text-[#8b5cf6] hover:underline"
+      >
         ← Back to users
       </Link>
 
-      <h1 className="my-6 text-3xl font-bold">Edit user</h1>
+      <header className="mb-6 mt-5">
+        <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
+          <span className="text-[#c4b5fd]">Edit</span> user
+        </h1>
+        <p className="mt-2 text-sm text-[#c4c1d0]">
+          Update user details and account permissions.
+        </p>
+      </header>
 
-      <div className="rounded-xl border p-6 shadow-sm">
+      <div className="rounded-2xl border border-[#484454] bg-[#302e3b] p-4 shadow-xl shadow-black/10 sm:p-6">
         <EditUserForm
           userId={user.id}
           name={user.name}

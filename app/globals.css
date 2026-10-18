@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #24232d;
+  --foreground: #f5f3ff;
+  --purple: #c4b5fd;
+  --purple-hover: #8b5cf6;
+  --surface: #302e3b;
+  --border: #484454;
 }
 
 @theme inline {
@@ -12,11 +16,9 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  min-height: 100%;
 }
 
 body {
